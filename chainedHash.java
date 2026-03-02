@@ -70,5 +70,25 @@ public class chainedHash {
         return null;
     }
     //commit
+    public String remove(String key) {
+        int i = hash(key);
+        Node current = table[i];
+        Node prev = null;
+
+        while (current != null) {
+            if (current.key.equals(key)) {
+                if (prev == null)
+                    table[i] = current.next;
+                else
+                    prev.next = current.next;
+                return current.value;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return null;
+    }
+}
+//commit
 
 
