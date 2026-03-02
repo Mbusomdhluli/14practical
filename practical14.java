@@ -42,4 +42,32 @@ public class Practical14 {
                 chainedHash chained = new chainedHash(m);
 
 //progress
+             for (int i = 0; i < n; i++) {
+                    open.insert(keys[i], values[i]);
+                    chained.insert(keys[i], values[i]);
+                }
+
+                
+                long start = System.currentTimeMillis();
+                for (int i = 0; i < n; i++)
+                    open.lookup(keys[i]);
+                long end = System.currentTimeMillis();
+                openTime += (end - start) / 1000.0;
+
+                start = System.currentTimeMillis();
+                for (int i = 0; i < n; i++)
+                    chained.lookup(keys[i]);
+                end = System.currentTimeMillis();
+                chainedTime += (end - start) / 1000.0;
+            }
+
+            openTime /= REPETITIONS;
+            chainedTime /= REPETITIONS;
+
+            System.out.printf("%.2f\t%d\t%.4f\t\t%.4f\n",
+                    alpha, n, openTime, chainedTime);
+        }
+    }
+}
+//commit
 
